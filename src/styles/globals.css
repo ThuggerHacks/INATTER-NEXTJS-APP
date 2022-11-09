@@ -24,3 +24,16 @@ a {
     background: black;
   }
 }
+
+.main-bg {
+  background-image: url(../public/images/bg.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.transparent-bg {
+  transition: background-color 500ms;
+}
+.transparent-bg:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}

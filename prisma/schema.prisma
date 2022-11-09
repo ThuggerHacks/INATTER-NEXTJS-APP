@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev1.db"
+}
+
+model Client {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  nome     String
+  password String
+  province String
+  agenda   Agenda[]
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  serviceName String
+  start       String
+  end         String
+  Agenda      Agenda[]
+}
+
+model message {
+  id       Int    @id @default(autoincrement())
+  option   String
+  question String
+  answer   String
+}
+
+model Agenda {
+  id        Int     @id @default(autoincrement())
+  datetime  String
+  numero    String?
+  client    Client  @relation(fields: [clientId], references: [id])
+  service   Service @relation(fields: [serviceId], references: [id])
+  clientId  Int
+  serviceId Int
+}
